@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index_page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+
+    <!-- 스크롤 애니메이션 효과-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+
+
+    <!-- index페이지 css-->
+    <link rel="stylesheet" href="/css/index.css">    
+
+    <style>
+    </style>
+    <script>
+    let observer = new IntersectionObserver(()=>{})
+
+    let .word = document.querySelectorAll('.word') //
+    observer.observe('.word[0]') //내가 원하는 html요소가 화면에 등장하는지 감시해줌
+    observer.observe('.word[1]')
+    observer.observe('.word[2]')
+    observer.observe('.word[3]')
+
+    </script>
+</head>
+
+<body>
+    <div id="page">
+        <header>
+            <div class=top style="border-bottom: 1px solid gainsboro;">
+                <div style="height: 1px; font-size: 1px; display: block; color: white;" ></div>
+                <div class=logo>
+                    <a href ="sub1" style="text-decoration: none; color: black">YourScent</a>
+                    <div><a href="#"><img src="/img/ico_cart.png" style="position: absolute; right:90px; top : 40px;"></a></div>
+                    <div><a href="/user/login"><img src="/img/ico_my.png" style="position: absolute; right:50px; top : 40px;"></a></div>
+                </div>
+                
+
+
+
+                <div class = "clear"></div>
+
+                <div class=top_container>
+                    <div class="top_item"><a href ="/sub1" style="text-decoration: none; color: black">Product</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Scent</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">About</a></div>
+                    <div class="top_item"><a th:href ="@{|/question/list|}" style="text-decoration: none; color: black">Q&A</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Best</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Gift</a></div>
+                </div>
+
+            </div>
+        </header>
+
+
+        <main>
+            <div class="slidebox">
+                <input type="radio" name="slide" id="slide01" checked>
+                <input type="radio" name="slide" id="slide02">
+                <input type="radio" name="slide" id="slide03">
+                <input type="radio" name="slide" id="slide04">
+                <ul class="slidelist">
+                    <li class="slideitem">
+                        <div>
+                            <label for="slide04" class="left"></label>
+                            <label for="slide02" class="right"></label>
+                            <a><img src="./img/main_visual_01.jpg"></a>
+                        </div>
+                    </li>
+                    <li class="slideitem">
+                        <div>
+                            <label for="slide01" class="left"></label>
+                            <label for="slide03" class="right"></label>
+                            <a><img src="./img/main_visual_02.jpg"></a>
+                        </div>
+                    </li>
+                    <li class="slideitem">
+                        <div>
+                            <label for="slide02" class="left"></label>
+                            <label for="slide04" class="right"></label>
+                            <a><img src="./img/main_visual_03.jpg"></a>
+                        </div>
+                    </li>
+                    <li class="slideitem">
+                        <div>
+                            <label for="slide03" class="left"></label>
+                            <label for="slide01" class="right"></label>
+                            <a><img src="./img/main_visual_04.jpg"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+        <div class = "words" >
+                <div class = "word" data-aos="fade-up" data-aos-offset="700" data-aos-duration="2500"><h1> 여러분에게 향기는 무엇을 떠올리게 하나요? </h1></div>                          
+        </div>
+
+
+        <div class = "index_pic">
+            <div class = "pic1" data-aos-delay= "1400" data-aos="fade-up" data-aos-offset="700" data-aos-easing="ease-out-cubic" data-aos-duration="1500"><img src ="./img/man1.jpg" style="margin-top: 100px; width: 100%;"></div>
+        </div>
+
+
+
+
+        <div class = "words" >
+            <div class = "word" data-aos="fade-up" data-aos-offset="1900" data-aos-easing="ease-out-cubic" data-aos-duration="2500"  ><h1> 그것은  소중한 누군가와 함께 나누었던 </h1></div>
+        </div>
+
+        <div class = "words" >
+            <div class = "word" data-aos="fade-up" data-aos-offset="2100" data-aos-easing="ease-out-cubic" data-aos-duration="2000"  ><h1> 추억, 사랑.. </h1></div>
+        </div>
+
+        <div class ="words">
+            <div class = "word_after" data-aos-delay= "1500" data-aos="fade-up" data-aos-offset="2100" data-aos-easing="ease-out-cubic" data-aos-duration="2000"  ><h1> 어쩌면 다시 돌아갈 수 없는 순간일 수도 있습니다. </h1></div>
+        </div> 
+
+        <div class = "words">
+            <div class = "word" data-aos="fade-up" data-aos-offset="2600" data-aos-easing="ease-out-cubic" data-aos-duration="2000"  ><h1 style="font-family: 'Playfair Display', serif; font-size: 60px;"> " YourScent "</h1> </div>
+        </div>
+
+        <div class = "words">
+            <div class = "word_after" data-aos="fade-up" data-aos-offset="2600" data-aos-easing="ease-out-cubic" data-aos-duration="2000"  ><h1 style="font-family: 'Playfair Display', serif;">  그 때, 그 시절 향수에 묻혀보세요</h1></div>
+        </div>
+
+           <!-- AOS 스크립트 시작 -->
+           <script> 
+            AOS.init(); // 자바스크립트로 init()을 해야 동작한다.
+            </script>
+
+
+
+
+        
+
+            <div class="button_container">
+            <p class="description"></p>
+            <button class="btn" ><span ><a href = "sub1" style="text-decoration: none; color: whitesmoke;">제품 둘러보기</a></span></button>
+            <!--<p class="link">
+                Design by 
+                <a href="https://dribbble.com/skytrip" target="_blank">SkyTrip</a>
+            </p>-->
+            </div>
+        </main>
+
+
+        <footer>
+            <div class = "footer_box">
+                <div class =footer_inner1>
+                    <div class = logo>
+                        <a href = "index.html" style="text-decoration: none; color: white;">YourScent</a>
+                    </div>
+                    <div>
+                        주식회사 YourScent코리아 (YourScent Korea Co.Ltd.) 
+                    </div>
+                    
+                    <div>
+                        고객센터 : YourScent Cheongdam : 070-4771-0636 / YourScent London : 070-7761-7542 상담시간 : 12:00 ~ 21:00
+                    </div>
+                </div>
+                <br>
+                <div class = footer_inner2>
+                    <ul>
+                        <li class = "inner2_word"> FAQ </li>
+                        <li class = "inner2_word"> | </li>
+                        <li class = "inner2_word"> About Us </li>
+                        <li class = "inner2_word"> | </li>
+                        <li class = "inner2_word"> 이용약관 </li>
+                        <li class = "inner2_word"> | </li>
+                        <li class = "inner2_word"> 개인정보처리방침 </li>
+                    </ul>
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+</body>
+
+</html>

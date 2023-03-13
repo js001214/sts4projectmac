@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index_page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" href="/css/question_detail.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<style>
+   
+
+</style>
+<body>
+    <header>
+        <div class=top style="border-bottom: 1px solid gainsboro;">
+            <div style="height: 1px; font-size: 1px; display: block; color: white;" ></div>
+            <div class=logo>
+                <a href ="/sub1" style="text-decoration: none; color: black">YourScent</a>
+                <div><a href="#"><img src="/img/ico_cart.png" style="position: absolute; right:90px; top : 40px;"></a></div>
+                <div><a href="/user/login"><img src="/img/ico_my.png" style="position: absolute; right:50px; top : 40px;"></a></div>
+            </div>
+            
+
+
+
+            <div class = "clear"></div>
+
+            <div class=top_container>
+                <div class="top_item"><a href ="/sub1" style="text-decoration: none; color: black">Product</a></div>
+                <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Scent</a></div>
+                <div class="top_item"><a href ="#" style="text-decoration: none; color: black">About</a></div>
+                <div class="top_item"><a th:href ="@{/question/list}" style="text-decoration: none; color: black">Q&A</a></div>
+                <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Best</a></div>
+                <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Gift</a></div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+    
+    
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<div class="container my-3">
+    <!-- 질문 -->
+    <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${question.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 답변의 갯수 표시 -->
+    <h5 class="border-bottom my-3 py-2" 
+        th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+    <!-- 답변 반복 시작 -->
+    <div class="card my-3" th:each="answer : ${question.answerList}">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 답변 반복 끝  -->
+    <!-- 답변 작성 -->
+    <form th:action="@{|/answer/create/${question.id}|}" method="post" class="my-3">
+        <textarea name="content" id="content" rows="10" class="form-control"></textarea>
+        <input type="submit" value="답변등록" class="btn btn-primary my-2">
+    </form>
+</div>
+	
+	
+    </main>
+
+
+    <footer>
+        <div class = "footer_box">
+            <div class =footer_inner1>
+                <div class = logo>
+                    <a href = "/sub1" style="text-decoration: none; color: white;">YourScent</a>
+                </div>
+                <div>
+                    주식회사 YourScent코리아 (YourScent Korea Co.Ltd.) 
+                </div>
+                
+                <div>
+                    고객센터 : YourScent Cheongdam : 070-4771-0636 / YourScent London : 070-7761-7542 상담시간 : 12:00 ~ 21:00
+                </div>
+            </div>
+            <br>
+            <div class = footer_inner2>
+                <ul>
+                    <li class = "inner2_word"> FAQ </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> About Us </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 이용약관 </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 개인정보처리방침 </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

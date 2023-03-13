@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sub1_page</title>
+    <link rel="preconnect" href="https://fonts. googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+
+    <!-- 스크롤 애니메이션 효과-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+
+
+    <link rel="stylesheet" href="/css/sub1.css">
+
+    <style>
+
+    </style>
+</head>
+<body>
+     <div id="page">
+        <header>
+            <div class=top style="border-bottom: 1px solid gainsboro;">
+                <div style="height: 1px; font-size: 1px; display: block; color: white;" ></div>
+                <div class=logo>
+                  <a href ="/sub1" style="text-decoration: none; color: black">YourScent</a>
+                  <div><a href="#"><img src="./img/ico_cart.png" style="position: absolute; right:90px; top : 40px;"></a></div>
+                  <div><a href="/user/login"><img src="./img/ico_my.png" style="position: absolute; right:50px; top : 40px;"></a></div>
+                </div>
+                
+
+
+
+                <div class = "clear"></div>
+
+                <div class=top_container>
+                    <div class="top_item"><a href ="/sub1" style="text-decoration: none; color: black">Product</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Scent</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">About</a></div>
+                    <div class="top_item"><a th:href ="@{|/question/list|}" style="text-decoration: none; color: black">Q&A</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Best</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Gift</a></div>
+                </div>
+
+            </div>
+        </header>
+
+
+        <main>
+        <h1 class="title">The most selled</h1>
+
+        
+        <div id="container">
+          <div class="slide_wrap">
+            <div class="slide_box">
+              <div class="slide_list clearfix">
+                <div class="slide_content slide01">
+                  <p><img  style="object-fit: fill; width: 400px; height: 400px;" src="./img/perfume1.png"></p>
+                </div>
+                <div class="slide_content slide02">
+                  <p><img  style="object-fit: fill; width: 400px; height: 400px;" src="./img/perfume2.png"></p>
+                </div>
+                <div class="slide_content slide03">
+                  <p><img  style="object-fit: fill; width: 400px; height: 400px;" src="./img/goldbox.png"></p>
+                </div>
+                <div class="slide_content slide04">
+                  <p><img  style="object-fit: fill; width: 400px; height: 400px;" src="./img/perfumebox1.png"></p>
+                </div>
+                <div class="slide_content slide05">
+                  <p><img  style="object-fit: fill; width: 400px; height: 400px;" src="./img/defuser1.png"></p>
+                </div>
+              </div>
+              <!-- // .slide_list -->
+            </div>
+            <!-- // .slide_box -->
+            <div class="slide_btn_box">
+              <button type="button" class="slide_btn_prev">Prev</button>
+              <button type="button" class="slide_btn_next">Next</button>
+            </div>
+            <!-- // .slide_btn_box -->
+            <ul class="slide_pagination"></ul>
+            <!-- // .slide_pagination -->
+          </div>
+          <!-- // .slide_wrap -->
+        </div>
+        <!-- // .container -->
+      
+        <script>
+          (function () {
+            const slideList = document.querySelector('.slide_list');  // Slide parent dom
+            const slideContents = document.querySelectorAll('.slide_content');  // each slide dom
+            const slideBtnNext = document.querySelector('.slide_btn_next'); // next button
+            const slideBtnPrev = document.querySelector('.slide_btn_prev'); // prev button
+            const pagination = document.querySelector('.slide_pagination');
+            const slideLen = slideContents.length;  // slide length
+            const slideWidth = 400; // slide width
+            const slideSpeed = 300; // slide speed
+            const startNum = 0; // initial slide index (0 ~ 4)
+            
+            slideList.style.width = slideWidth * (slideLen + 2) + "px";
+            
+            // Copy first and last slide
+            let firstChild = slideList.firstElementChild;
+            let lastChild = slideList.lastElementChild;
+            let clonedFirst = firstChild.cloneNode(true);
+            let clonedLast = lastChild.cloneNode(true);
+      
+            // Add copied Slides
+            slideList.appendChild(clonedFirst);
+            slideList.insertBefore(clonedLast, slideList.firstElementChild);
+      
+            // Add pagination dynamically
+            let pageChild = '';
+            for (var i = 0; i < slideLen; i++) {
+              pageChild += '<li class="dot';
+              pageChild += (i === startNum) ? ' dot_active' : '';
+              pageChild += '" data-index="' + i + '"><a href="#"></a></li>';
+            }
+            pagination.innerHTML = pageChild;
+            const pageDots = document.querySelectorAll('.dot'); // each dot from pagination
+      
+            slideList.style.transform = "translate3d(-" + (slideWidth * (startNum + 1)) + "px, 0px, 0px)";
+      
+            let curIndex = startNum; // current slide index (except copied slide)
+            let curSlide = slideContents[curIndex]; // current slide dom
+            curSlide.classList.add('slide_active');
+      
+            /** Next Button Event */
+            slideBtnNext.addEventListener('click', function() {
+              if (curIndex <= slideLen - 1) {
+                slideList.style.transition = slideSpeed + "ms";
+                slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+              }
+              if (curIndex === slideLen - 1) {
+                setTimeout(function() {
+                  slideList.style.transition = "0ms";
+                  slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+                }, slideSpeed);
+                curIndex = -1;
+              }
+              curSlide.classList.remove('slide_active');
+              pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList.remove('dot_active');
+              curSlide = slideContents[++curIndex];
+              curSlide.classList.add('slide_active');
+              pageDots[curIndex].classList.add('dot_active');
+            });
+      
+            /** Prev Button Event */
+            slideBtnPrev.addEventListener('click', function() {
+              if (curIndex >= 0) {
+                slideList.style.transition = slideSpeed + "ms";
+                slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
+              }
+              if (curIndex === 0) {
+                setTimeout(function() {
+                  slideList.style.transition = "0ms";
+                  slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
+                }, slideSpeed);
+                curIndex = slideLen;
+              }
+              curSlide.classList.remove('slide_active');
+              pageDots[(curIndex === slideLen) ? 0 : curIndex].classList.remove('dot_active');
+              curSlide = slideContents[--curIndex];
+              curSlide.classList.add('slide_active');
+              pageDots[curIndex].classList.add('dot_active');
+            });
+      
+            /** Pagination Button Event */
+            let curDot;
+            Array.prototype.forEach.call(pageDots, function (dot, i) {
+              dot.addEventListener('click', function (e) {
+                e.preventDefault();
+                curDot = document.querySelector('.dot_active');
+                curDot.classList.remove('dot_active');
+                
+                curDot = this;
+                this.classList.add('dot_active');
+      
+                curSlide.classList.remove('slide_active');
+                curIndex = Number(this.getAttribute('data-index'));
+                curSlide = slideContents[curIndex];
+                curSlide.classList.add('slide_active');
+                slideList.style.transition = slideSpeed + "ms";
+                slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
+              });
+            });
+          })();
+        </script>
+
+        <div id="product_box">
+          
+          <a href = "/sub2">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume1.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                <li id ="badge">The Black Collection</li>
+                <li class="txt1">EAU DE Perfume (Black Collection)</li>
+                <li class="txt2">30ml</li>
+                <li class="txt3">216,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "/sub2">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume3.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                <li id ="badge">The Black Collection</li>
+                <li class="txt1">Bespoke EAU DE Perfume (Black Collection)</li>
+                <li class="txt2">30ml</li>
+                <li class="txt3">216,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume4.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                <li id ="badge">The Black Collection</li>
+                <li class="txt1">EAU DE Perfume (Black Collection)</li>
+                <li class="txt2">100ml</li>
+                <li class="txt3">576,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume3.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                <li id ="badge">The Black Collection</li>
+                <li class="txt1">Bespoke EAU DE Perfume (Black Collection)</li>
+                <li class="txt2">100ml</li>
+                <li class="txt3">576,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume1.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">EAU DE Perfume (Exclusive Collection)</li>
+                <li class="txt2">30ml</li>
+                <li class="txt3">168,800원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume3.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">Bespoke EAU DE Perfume (Exclusive Collection)</li>
+                <li class="txt2">30ml</li>
+                <li class="txt3">168,800원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume4.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">EAU DE Perfume (Exclusive Collection)</li>
+                <li class="txt2">100ml</li>
+                <li class="txt3">433,800원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume2.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">Bespoke EAU DE Perfume (Exclusive Collection)</li>
+                <li class="txt2">100ml</li>
+                <li class="txt3">433,800원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/perfume_stick.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">Scent Discovery Set</li>
+                <li class="txt2">2.4ml | 34개입</li>
+                <li class="txt3">331,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/dual_crayon.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">Dual Crayon</li>
+                <li class="txt2">10ml | 1개입</li>
+                <li class="txt3">55,000원</li>
+              </ul>
+            </div>
+          </a>
+
+          <a href = "#">
+            <div id ="products">
+              <div id ="products_img">
+                <img src ="img/wardrobe.png" style="width: 300px; height: 300px; object-fit: fill;">
+              </div>
+              <ul id ="products_info">
+                
+                <li class="txt1">Scented Wardrobe</li>
+                <li class="txt2">10ml | 5개입</li>
+                <li class="txt3">228,000원</li>
+              </ul>
+            </div>
+          </a>
+
+         
+
+
+
+
+        </div> <!-- product_box 그리드 박스 -->
+
+
+
+        </main>
+
+        <footer>
+          <div class = "footer_box">
+            <div class =footer_inner1>
+                <div class = logo>
+                  <a href = "/" style="text-decoration: none; color: white;">YourScent</a>
+                </div>
+                <div>
+                    주식회사 YourScent코리아 (YourScent Korea Co.Ltd.) 
+                </div>
+                
+                <div>
+                    고객센터 : YourScent Cheongdam : 070-4771-0636 / YourScent London : 070-7761-7542 상담시간 : 12:00 ~ 21:00
+                </div>
+            </div>
+            <br>
+            <div class = footer_inner2>
+                <ul>
+                    <li class = "inner2_word"> FAQ </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> About Us </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 이용약관 </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 개인정보처리방침 </li>
+                </ul>
+            </div>
+        </div>
+
+
+        </footer>
+
+      
+     </div>   
+</body>
+</html>

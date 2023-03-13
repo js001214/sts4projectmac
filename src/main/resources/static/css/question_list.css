@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+   }
+   #page {
+  width: 1910px;
+  height: 1000px;
+        }
+        .line {
+          border : 1px  solid slategray;
+          width : 1500px;
+          margin-left : 100px;
+        }
+
+  /*-------------header 시작----------------*/
+
+  header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .top {
+            height: 135px;
+        /*  border: 1px solid red; */
+            background-color: white;
+            z-index: 1;
+        }
+
+        .logo {
+            
+            
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 30px;
+            margin: 30px 0 20px 0;
+            text-shadow: 0ch;
+           
+        }
+
+        .top_container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', sans-serif; 
+          
+        }
+        .util_menu {
+            display: inline;
+            
+        }
+
+        .top_item {
+            color: #000;
+
+
+        }
+
+        .top_item:after {
+            display: block;
+            content: '';
+            border-bottom: solid 3px #212121;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        .top_item:hover:after {
+            transform: scaleX(1);
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+  /*-------------header 끝----------------*/
+
+
+      /*-------------footer 시작-----------------*/
+      footer .footer_box {
+        padding: 100px 0;
+        color: #fff;
+        background-color: #231F20;
+        text-align: center;
+        margin-top: 300px;
+        }
+
+    footer .footer_inner2 .inner2_word {
+        display: inline;
+        margin-left: 15px;
+        }
+
+    
+    /*-------------footer 끝-----------------*/
+
+
+

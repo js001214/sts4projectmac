@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index_page</title>
+    
+    <link rel="stylesheet" href="/css/question_list.css"> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+    
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+
+    
+
+</head>
+
+<style>
+</style>
+<body>
+    <header>
+        <div class=top style="border-bottom: 1px solid gainsboro;">
+            <div style="height: 1px; font-size: 1px; display: block; color: white;" ></div>
+            <div class=logo>
+                <a href ="/sub1" style="text-decoration: none; color: black">YourScent</a>
+                <div><a href="#"><img src="/img/ico_cart.png" style="position: absolute; right:90px; top : 40px;"></a></div>
+                <div><a href="/user/login"><img src="/img/ico_my.png" style="position: absolute; right:50px; top : 40px;"></a></div>
+            </div>
+            
+
+
+
+            <div class = "clear"></div>
+
+                <div class=top_container>
+                    <div class="top_item"><a href ="/sub1" style="text-decoration: none; color: black">Product</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Scent</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">About</a></div>
+                    <div class="top_item"><a th:href ="@{|/question/list|}" style="text-decoration: none; color: black">Q&A</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Best</a></div>
+                    <div class="top_item"><a href ="#" style="text-decoration: none; color: black">Gift</a></div>
+                </div>
+
+        </div>
+    </header>
+
+    <main>
+    
+    
+		<div class="container my-3">
+		    <table class="table">
+		        <thead class="table-dark">
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성일시</th>
+					
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="question, loop : ${paging}">
+					<td th:text="${paging.getTotalElements - (paging.number*paging.size)-loop.index}"></td>
+					<td> 
+						<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+						<span class = "text-danger small ms-2"
+							th:if="${#lists.size(question.answerList) > 0}" 
+                        	th:text="${#lists.size(question.answerList)}">
+						</span>
+					</td>
+					
+					<td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+				</tr>
+			</tbody>
+
+
+			</table>
+			    <!-- 페이징처리 시작 -->
+			<div th:if="${!paging.isEmpty()}">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${!paging.hasPrevious} ? 'disabled'"><a
+						class="page-link" th:href="@{|?page=${paging.number-1}|}"> <span>이전</span>
+					</a></li>
+					<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+					th:if="${page >= paging.number-5 and page <= paging.number+5}"
+						th:classappend="${page == paging.number} ? 'active'"
+						class="page-item"><a th:text="${page}" class="page-link"
+						th:href="@{|?page=${page}|}"></a></li>
+					<li class="page-item"
+						th:classappend="${!paging.hasNext} ? 'disabled'"><a
+						class="page-link" th:href="@{|?page=${paging.number+1}|}"> <span>다음</span>
+					</a></li>
+				</ul>
+			</div>
+			<!-- 페이징처리 끝 -->
+
+
+			<a th:href="@{/question/create}" class="btn btn-danger">질문 등록하기</a>
+		
+		</div>
+		
+		
+    </main>
+
+
+    <footer>
+        <div class = "footer_box">
+            <div class =footer_inner1>
+                <div class = logo>
+                    <a href = "/" style="text-decoration: none; color: white;">YourScent</a>
+                </div>
+                <div>
+                    주식회사 YourScent코리아 (YourScent Korea Co.Ltd.) 
+                </div>
+                
+                <div>
+                    고객센터 : YourScent Cheongdam : 070-4771-0636 / YourScent London : 070-7761-7542 상담시간 : 12:00 ~ 21:00
+                </div>
+            </div>
+            <br>
+            <div class = footer_inner2>
+                <ul>
+                    <li class = "inner2_word"> FAQ </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> About Us </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 이용약관 </li>
+                    <li class = "inner2_word"> | </li>
+                    <li class = "inner2_word"> 개인정보처리방침 </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    
+</body>
+</html>
